@@ -1,5 +1,5 @@
-name: 'Datadog Workflow Metrics'
-description: 'Reports data on the workflow to datadog'
+name: 'rS Datadog Workflow Metrics'
+description: 'Reports data on the workflow to datadog, by rewardStyle'
 inputs:
   datadog-metric-prefix:
     description: 'A prefix for your datadog metrics'
