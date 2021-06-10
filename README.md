@@ -2,6 +2,14 @@
 
 This action integrates into pre-existing Datadog and GitHub Actions workflows, and reports metrics to Datadog based on job and workflow performance.
 
+## Important Notes
+
+This repo was forked from https://github.com/scribd/github-action-datadog-reporting to be used specifically by rewardStyle. It is not published with the expectation or intent of public use, or to solicit updates from the public -- rather those should go to the original repo.
+
+⚠️ Using random actions not maintained by a trusted authority / not using locked/vendored dependencies has the potential for a supply chain security incident.
+
+
+
 ## Features
 
 ### Capture GitHub Action Job and Workflow metrics
@@ -18,7 +26,7 @@ Metric value: 151.0
 Tags: 
 {
   workflow: "My workflow name",
-  project: "scribd/my_repository",
+  project: "rewardStyle/my_repository",
   status: "success",
   name: "My-job-name",
 }
@@ -30,7 +38,7 @@ Metric value: 1223.0
 Tags: 
 {
   workflow: "My workflow name",
-  project: "scribd/my_repository",
+  project: "rewardStyle/my_repository",
   status: "success",
 }
 ```
@@ -48,7 +56,7 @@ The following represents example metrics for time to merge, lines changed and ti
 ```
 Metric name: <prefix>.time_to_merge
 Metric value: 1624.0
-Tags: {project: "scribd/my_repository", "team:my_team", "team:my_team2"}
+Tags: {project: "rewardStyle/my_repository", "team:my_team", "team:my_team2"}
 ```
 
 Note that team tags are only added if the author of the merge request is part of the organization the repository belongs to. Multiple teams will be tagged if the user belongs to multiple teams in the organization.
@@ -56,14 +64,14 @@ Note that team tags are only added if the author of the merge request is part of
 ```
 Metric name: <prefix>.lines_changed
 Metric value: 173.0
-Tags: {project: "scribd/my_repository"}
+Tags: {project: "rewardStyle/my_repository"}
 ```
 
 
 ```
 Metric name: <prefix>.time_to_open
 Metric value: 389.0
-Tags: {project: "scribd/my_repository"}
+Tags: {project: "rewardStyle/my_repository"}
 ```
 
 ### Metric Counts
@@ -130,7 +138,7 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: 2.6
-      - uses: scribd/github-action-datadog-reporting@v1
+      - uses: rewardStyle/github-action-datadog-reporting@v1.2.0
         with:
           datadog-metric-prefix: 'github.action'
           metrics-type: 'job_metrics'
@@ -174,7 +182,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.OCTOKIT_TOKEN }}
 
       - id: datadog-metrics
-        uses: scribd/github-action-datadog-reporting@v1
+        uses: rewardStyle/github-action-datadog-reporting@v1.2.0
         with:
           datadog-metric-prefix: 'github.action'
           metrics-type: 'velocity'
