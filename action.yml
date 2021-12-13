@@ -1,6 +1,10 @@
-name: 'rS Datadog Workflow Metrics'
-description: 'Reports data on the workflow to datadog, by rewardStyle'
+name: 'LTK Datadog Workflow Metrics'
+description: 'Reports data on the workflow to datadog, by LTK'
 inputs:
+  ruby-version:
+    description: 'Version of ruby language to setup. Should be managed by this action, but can be overridden with a new version, or skipped if an empty string'
+    required: false
+    default: 2.6
   datadog-metric-prefix:
     description: 'A prefix for your datadog metrics'
     required: false
@@ -19,6 +23,10 @@ inputs:
 runs:
   using: "composite"
   steps:
+    - uses: ruby/setup-ruby@v1
+      if: ${{inputs.ruby-version != ''}}
+      with:
+        ruby-version: ${{inputs.ruby-version}}
     - name: Install required libraries for gems
       shell: bash
       run: |
