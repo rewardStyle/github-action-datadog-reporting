@@ -1,5 +1,5 @@
-name: 'rS Datadog Workflow Metrics'
-description: 'Reports data on the workflow to datadog, by rewardStyle'
+name: 'LTK Datadog Workflow Metrics'
+description: 'Reports data on the workflow to datadog, by LTK'
 inputs:
   ruby-version:
     description: 'Version of ruby language to setup. Should be managed by this action, but can be overridden with a new version, or skipped if an empty string'
