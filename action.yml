@@ -1,47 +1,7 @@
 name: 'LTK Datadog Workflow Metrics'
-description: 'Reports data on the workflow to datadog, by LTK'
-inputs:
-  ruby-version:
-    description: 'Version of ruby language to setup. Should be managed by this action, but can be overridden with a new version, or skipped if an empty string'
-    required: false
-    default: 2.6
-  datadog-metric-prefix:
-    description: 'A prefix for your datadog metrics'
-    required: false
-    default: 'github.action'
-  metrics-type:
-    description: '"velocity" or "job_metrics" depending on the desired metrics to be collected'
-    required: true
-  teams:
-    description: 'An array of teams to tag the time to merge metric with'
-    required: false
-    default: '[]'
-  tagged-branches:
-    description: 'If provided enables tagging for specified branches. Metrics are tagged with branch:{branch} or branch:other'
-    required: false
-    default: '[]'
+description: 'DEPRECATED JANUARY 2022 IN FAVOR OF https://app.datadoghq.com/ci/pipelines'
 runs:
-  using: "composite"
   steps:
-    - uses: ruby/setup-ruby@v1
-      if: ${{inputs.ruby-version != ''}}
-      with:
-        ruby-version: ${{inputs.ruby-version}}
-    - name: Install required libraries for gems
+    - name: WARNING
       shell: bash
-      run: |
-        gem install octokit --silent
-        gem install dogapi --silent
-    - name: Export extra data
-      shell: bash
-      run: |
-        if [ "${{ inputs.metrics-type }}" == "velocity" ]; then
-          echo "PR_NUMBER=${{github.event.pull_request.number}}" >> $GITHUB_ENV
-          echo "ACTION=${{github.event.action}}" >> $GITHUB_ENV
-        else
-          echo "ACTION=${{ inputs.metrics-type }}" >> $GITHUB_ENV
-        fi
-    - id: metric
-      shell: bash
-      run: |
-        ruby ${{ github.action_path }}/report_github_metrics.rb ${{github.repository}} ${{github.run_id}} ${{ inputs.datadog-metric-prefix }} '${{ inputs.teams }}' '${{ inputs.tagged-branches }}'
+      run: echo "DEPRECATED JANUARY 2022 IN FAVOR OF https://app.datadoghq.com/ci/pipelines"

@@ -1,3 +1,7 @@
+# DEPRECATED JANUARY 2022 IN FAVOR OF https://app.datadoghq.com/ci/pipelines
+
+----
+
 # Datadog Velocity Metrics for GitHub and GitHub Actions
 
 This action integrates into pre-existing Datadog and GitHub Actions workflows, and reports metrics to Datadog based on job and workflow performance.
